@@ -5,7 +5,7 @@
  *@array: input array to be sorted
  *@size: size of the array
  *
- *Return: Nothing, it's a void function
+ *Return: Nothing,
  */
 void counting_sort(int *array, size_t size)
 {
