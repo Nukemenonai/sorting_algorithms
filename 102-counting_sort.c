@@ -33,14 +33,7 @@ void counting_sort(int *array, size_t size)
 		count_array[array[k]]++;
 	for (i = 1; i <= max_num; i++)
 		count_array[i] = count_array[i] + count_array[i - 1];
-	for (i = 0; i <= max_num; i++)
-	{
-		printf("%d", count_array[i]);
-		if (i < max_num)
-			printf(", ");
-		else
-			printf("\n");
-	}
+	print_array(count_array, max_num + 1);
 	for (k = 0; k < size; k++)
 	{
 		sort_array[count_array[array[k]] - 1] = array[k];
