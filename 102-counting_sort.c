@@ -11,9 +11,15 @@ void counting_sort(int *array, size_t size)
 {
 	size_t k;
 	int max_num, i;
-	int *count_array, sort_array[size];
+	int *count_array, *sort_array;
 
 	max_num = array[0];
+	sort_array = malloc(size * sizeof(int));
+	if (sort_array == NULL)
+	{
+		free(sort_array);
+		return;
+	}
 	for (k = 0; k < size; k++)
 		sort_array[k] = array[k];
 	for (k = 0; k < size; k++)
