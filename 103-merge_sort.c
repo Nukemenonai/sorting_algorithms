@@ -2,10 +2,19 @@
 #include <stdlib.h>
 #include "sort.h"
 
+/**
+ * merge - merges an array using the topdown merge sort
+ *
+ * @array: the array to sort
+ * @size: the size of the array
+ * @m: an indicator of middle of the array
+ *
+ */
+
 void merge(int *array, size_t size, size_t m)
 {
 	size_t i, j, k;
-	int *copy = malloc(size * sizeof (int));
+	int *copy = malloc(size * sizeof(int));
 
 	printf("Merging...\n");
 	for (i = 0, j = m, k = 0; k < size; k++)
@@ -32,6 +41,14 @@ void merge(int *array, size_t size, size_t m)
 
 	free(copy);
 }
+
+/**
+ * merge_sort - sorts an array of numbers in ascending order using mergesort
+ *
+ * @array: the array to sort
+ * @size: the size of the array
+ *
+ */
 
 void merge_sort(int *array, size_t size)
 {
