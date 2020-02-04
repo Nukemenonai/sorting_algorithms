@@ -1,5 +1,5 @@
 #include "sort.h"
-
+#include <stdlib.h>
 /**
  *counting_sort_radix - sort and array by counting sort method
  *and rearange it starting by the end
