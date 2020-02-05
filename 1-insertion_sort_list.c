@@ -11,6 +11,8 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *cpy_list, *save_prev_node, *test_node;
 
+	if (!list || !(*list))
+		return;
 	cpy_list = *list;
 	cpy_list = cpy_list->next;
 	while (cpy_list != NULL)
