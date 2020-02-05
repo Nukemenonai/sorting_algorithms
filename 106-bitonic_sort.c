@@ -36,9 +36,9 @@ void bitonic_sort_rec(int *array, int start, int n_el, int dir, size_t size_a)
 	{
 		k = n_el / 2;
 		if (dir == 1)
-			printf("Merging [%d/%lu] (UP)\n", n_el, size_a);
+			printf("Merging [%d/%lu] (UP):\n", n_el, size_a);
 		else
-			printf("Merging [%d/%lu] (DOWN)\n", n_el, size_a);
+			printf("Merging [%d/%lu] (DOWN):\n", n_el, size_a);
 		for (j = start; j < start + n_el; j++)
 		{
 			printf("%d", array[j]);
@@ -50,9 +50,9 @@ void bitonic_sort_rec(int *array, int start, int n_el, int dir, size_t size_a)
 		bitonic_sort_rec(array, (start + k), k, 0, size_a);
 		bitonic_merge(array, start, n_el, dir, size_a);
 		if (dir == 1)
-			printf("Result [%d/%lu] (UP)\n", n_el, size_a);
+			printf("Result [%d/%lu] (UP):\n", n_el, size_a);
 		else
-			printf("Result [%d/%lu] (DOWN)\n", n_el, size_a);
+			printf("Result [%d/%lu] (DOWN):\n", n_el, size_a);
 
 		for (j = start; j < start + n_el; j++)
 		{
