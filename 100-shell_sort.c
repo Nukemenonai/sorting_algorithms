@@ -19,7 +19,7 @@ void shell_sort(int *array, size_t size)
 	int value;
 
 	if (size < 2)
-		return; 
+		return;
 
 	while (gap < size)
 	{
