@@ -1,5 +1,14 @@
 #include "sort.h"
 
+/**
+ *comp_swap - swap numbers in an array depend of direction given
+ *@array: given array
+ *@i: position 1
+ *@j: position 2
+ *@dir: direction of the swap 1 or 0
+ *
+ *Return: Nothing, it's a void function
+ */
 void comp_swap(int *array, int i, int j, int dir)
 {
 	int save;
@@ -12,6 +21,16 @@ void comp_swap(int *array, int i, int j, int dir)
 	}
 }
 
+/**
+ *bitonic_merge - recursive function to merge the results of the array
+ *@array: main array
+ *@start: start position
+ *@num_elem: number of elements to divide
+ *@dir: direction of swap
+ *@size_a: size of the main array
+ *
+ *Return: Nothing, it's a void function
+ */
 void bitonic_merge(int *array, int start, int num_elem, int dir, size_t size_a)
 {
 	int i, k;
@@ -28,6 +47,16 @@ void bitonic_merge(int *array, int start, int num_elem, int dir, size_t size_a)
 	}
 }
 
+/**
+ *bitonic_sort_rec - recursive function that sorts an array
+ *@array: main array
+ *@start: start position to sort
+ *@n_el: next number of elements to apply bitonic
+ *@dir: direction of swap
+ *@size_a: size of the main array
+ *
+ *Return: nothing, it's a void function
+ */
 void bitonic_sort_rec(int *array, int start, int n_el, int dir, size_t size_a)
 {
 	int k, j;
