@@ -60,6 +60,8 @@ void heap_sort(int *array, size_t size)
 {
 	int save, start;
 
+	if (size < 2)
+		return;
 	for (start = (size - 2) / 2; start >= 0; start--)
 		siftDown(array, (int)size, start, size);
 	for (start = 0; start < (int)size; start++)
