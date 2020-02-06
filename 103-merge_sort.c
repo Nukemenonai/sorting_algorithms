@@ -3,63 +3,109 @@
 #include "sort.h"
 
 /**
- * merge - merges an array using the topdown merge sort
+ *CopyArray - copy information of an array
+ *@array: main array
+ *@begin: start position of array
+ *@end: final position of array
+ *@other: copy of main array
  *
- * @array: the array to sort
- * @size: the size of the array
- * @m: an indicator of middle of the array
- *
+ *Return: Nothing, it's a void function
  */
-
-void merge(int *array, size_t size, size_t m)
+void CopyArray(int *array, size_t begin, size_t end, int *other)
 {
-	size_t i, j, k;
-	int *copy = malloc(size * sizeof(int));
+	size_t k;
 
-	printf("Merging...\n");
-	for (i = 0, j = m, k = 0; k < size; k++)
-	{
-		copy[k] = j == size ? array[i++]
-		: i == m ? array[j++]
-		: array[j] < array[i] ? array[j++]
-		: array[i++];
-	}
-
-	printf("[left]: ");
-	print_array(array, m);
-
-	printf("[right]: ");
-	print_array(array + m, size - m);
-
-	for (i = 0; i < size; i++)
-	{
-		array[i] = copy[i];
-	}
-
-	printf("[Done]: ");
-	print_array(array, size);
-
-	free(copy);
+	for (k = begin; k < end; k++)
+		other[k] = array[k];
 }
 
 /**
- * merge_sort - sorts an array of numbers in ascending order using mergesort
+ *TDMerge - Merge array
+ *@array: main array
+ *@begin: start position of the array
+ *@middle: middle position of the array
+ *@end: last position of the array
+ *@other: copy main array
  *
- * @array: the array to sort
- * @size: the size of the array
- *
+ *Return: Nothing, it's a void
  */
+void TDMerge(int *array, size_t begin, size_t middle, size_t end, int *other)
+{
+	size_t i = begin, j = middle, k;
 
+	for (k = begin; k < end; k++)
+	{
+		if (i < middle && (j >= end || array[i] <= array[j]))
+		{
+			other[k] = array[i];
+			i = i + 1;
+		}
+		else
+		{
+			other[k] = array[j];
+			j = j + 1;
+		}
+	}
+}
+
+/**
+ *TopDownSplitMerge - Recursive function that splits and merge the array
+ *@other: secontd array
+ *@begin: first position of array
+ *@end: last position of array
+ *@array: main array
+ *
+ *Return: Nothing, it's a void function
+ */
+void TopDownSplitMerge(int *other, size_t begin, size_t end, int *array)
+{
+	size_t middle;
+	int i;
+
+	if (end - begin < 2)
+		return;
+	middle = (end + begin) / 2;
+	TopDownSplitMerge(array, begin,  middle, other);
+	TopDownSplitMerge(array, middle, end, other);
+	printf("Merging...\n");
+	printf("[left]: ");
+	for (i = begin; i < (int)middle; i++)
+	{
+		printf("%d", other[i]);
+		if (i != (int)middle - 1)
+			printf(", ");
+	}
+	printf("\n");
+	printf("[right]: ");
+	for (i = middle; i < (int)end; i++)
+	{
+		printf("%d", other[i]);
+		if (i != (int)end - 1)
+			printf(", ");
+	}
+	printf("\n");
+	TDMerge(other, begin, middle, end, array);
+	printf("[Done]: ");
+	for (i = begin; i < (int)end; i++)
+	{
+		printf("%d", array[i]);
+		if (i != (int)end - 1)
+			printf(", ");
+	}
+	printf("\n");
+}
+/**
+ *merge_sort - function that sorts an array based in merge sort method
+ *@array: unodered array
+ *@size: size of the array
+ *
+ *Return: Nothing, it's a void
+ */
 void merge_sort(int *array, size_t size)
 {
-	size_t m;
+	int *other = malloc(size * sizeof(int));
 
-	if (size < 2)
-		return;
-	m = size / 2;
-
-	merge_sort(array, m);
-	merge_sort(array + m, size - m);
-	merge(array, size, m);
-
+	CopyArray(array, 0, size, other);
+	TopDownSplitMerge(other, 0, size, array);
+	free(other);
 }
